@@ -44,7 +44,7 @@
 .
 :measurementProvidedBy
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "Relation between a Sensor and an artifact input."@en ;
+  rdfs:comment "Relation between a sensor and an artifact input."@en ;
   rdfs:label "sensor provides input"@en ;
   schema:rangeIncludes sosa:Sensor ;
   schema:domainIncludes ssn:Input ;
@@ -191,6 +191,15 @@
   schema:unitCode "om:kilobyte" ;
   rdfs:label "Memory requirement." ;
 .
+:vibrationSensor_1
+  rdf:type :VibrationSensor ;
+  rdfs:label "A vibration sensor" ;
+.
+:threeAxesVibrationInput_1
+  rdf:type :VibrationMeasurement ;
+  rdfs:label "threeAxesVibrationInput" ;
+  :measurementProvidedBy: :vibrationSensor_1 ;
+.
 
 #################################################################
 #    Other Classes
@@ -211,9 +220,4 @@
   rdf:type owl:Class ;
   rdfs:label "VibrationMeasurement" ;
   rdfs:subClassOf ssn:Input ;
-  :measurementProvidedBy: :VibrationSensor ;
-.
-:threeAxesVibrationInput_1
-  rdf:type :VibrationMeasurement ;
-  rdfs:label "threeAxesVibrationInput" ;
 .

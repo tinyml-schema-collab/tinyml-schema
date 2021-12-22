@@ -107,13 +107,6 @@ schema:runtimePlatform
   rdfs:comment "Muliply accumulate operations." ;
   rdfs:label "hasMultiplyAccumulateOps" ;
 .
-:hasID
-  rdf:type rdf:Property ;
-  schema:domainIncludes :NeuralNetwork ;
-  schema:rangeIncludes schema:Text  ;
-  rdfs:comment "An unique identifier for a neural network." ;
-  rdfs:label "id" ;
-.
 :hasWeights
   rdf:type rdf:Property ;
   schema:domainIncludes :NeuralNetwork ;

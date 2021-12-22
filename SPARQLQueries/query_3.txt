@@ -1,6 +1,6 @@
-PREFIX cep: <https://w3id.org/tinyml-schema-collab/cep-rule-schema#> 
-PREFIX demo: <https://w3id.org/tinyml-schema-collab/semanticExample/festo_demo#> 
-PREFIX nnet: <https://w3id.org/tinyml-schema-collab/neural-network-schema#> 
+PREFIX cep: <https://w3id.org/tinyml-schema/cep-rule-schema#> 
+PREFIX demo: <https://w3id.org/tinyml-schema/demo#> 
+PREFIX nnet: <https://w3id.org/tinyml-schema/neural-network-schema#> 
 PREFIX om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
 PREFIX s3n: <http://w3id.org/s3n/> 
