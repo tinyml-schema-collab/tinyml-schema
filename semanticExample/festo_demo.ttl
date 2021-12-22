@@ -1,8 +1,8 @@
-# baseURI: https://w3id.org/tinyml-schema-collab/semanticExample/festo-demo
+# baseURI: https://w3id.org/tinyml-schema/demo
 
-@prefix : <https://w3id.org/tinyml-schema-collab/semanticExample/festo-demo#> .
-@prefix cep: <https://w3id.org/tinyml-schema-collab/cep-rule-schema#> .
-@prefix nnet: <https://w3id.org/tinyml-schema-collab/neural-network-schema#> .
+@prefix : <https://w3id.org/tinyml-schema/demo#> .
+@prefix cep: <https://w3id.org/tinyml-schema/cep-rule-schema#> .
+@prefix nnet: <https://w3id.org/tinyml-schema/neural-network-schema#> .
 @prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .

@@ -1,4 +1,4 @@
-@prefix demo: <https://w3id.org/tinyml-schema/semantic-example/festo_demo#> .
+@prefix demo: <https://w3id.org/tinyml-schema/demo#> .
 @prefix hctl: <https://www.w3.org/2019/wot/hypermedia#> .
 @prefix jsonschema: <https://www.w3.org/2019/wot/json-schema#> .
 @prefix nnet: <https://w3id.org/tinyml-schema/neural-network-schema#> .
