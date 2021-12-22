@@ -1,8 +1,8 @@
-@prefix cep: <https://w3id.org/tinyml-schema-collab/cep-rule-schema#> .
-@prefix demo: <https://w3id.org/tinyml-schema-collab/semanticExample/festo_demo#> .
+@prefix cep: <https://w3id.org/tinyml-schema/cep-rule-schema#> .
+@prefix demo: <https://w3id.org/tinyml-schema/semantic-example/festo_demo#> .
 @prefix hctl: <https://www.w3.org/2019/wot/hypermedia#> .
 @prefix jsonschema: <https://www.w3.org/2019/wot/json-schema#> .
-@prefix nnet: <https://w3id.org/tinyml-schema-collab/neural-network-schema#> .
+@prefix nnet: <https://w3id.org/tinyml-schema/neural-network-schema#> .
 @prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix s3n: <http://w3id.org/s3n/> .
@@ -13,7 +13,7 @@
 @prefix wotsec: <https://www.w3.org/2019/wot/security#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://w3id.org/tinyml-schema-collab/semanticExample/Arduino_Sense_BLE_33_198_023_042_025> a s3n:SmartSensor ;
+<https://w3id.org/tinyml-schema/semantic-example/Arduino_Sense_BLE_33_198_023_042_025> a s3n:SmartSensor ;
     ssn:hasSubSystem [ a demo:TemperatureSensor ],
         [ a demo:VibrationSensor ],
         [ a demo:ImagerSensor ],

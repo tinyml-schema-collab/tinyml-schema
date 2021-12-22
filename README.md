@@ -4,7 +4,7 @@ The Internet of Things (IoT) is revolutionizing industry. Powered by pervasive e
 
 This is the tinyml-schema project repository. It contains all the schemas, examples, and related software.
 
-The goal of tinyml-schema is not to invent new semantic models for IoT. Instead we integrate and reuse existing schemas, ontologies and vocabularies. The approach is open, organic and community based. However we do encourage domain experts to give their proposals, and thus help us growing tinyml-schema. 
+The goal of tinyml-schema is not to invent new semantic models for IoT. Instead we integrate and reuse existing schemas, ontologies and vocabularies. The approach is open, organic and community based. 
 
 ## Citation
 If our work has been useful for your research and you would like to cite it in an scientific publication, please cite our paper [Towards Semantic Management of On-Device Applications in Industrial IoT](https://github.com/tinyml-schema-collab/tinyml-schema) as follows:
@@ -19,7 +19,14 @@ To be added
 * CEPRuleSchema: The ontology for CEP rules
 * NeuralNetworkSchema: The ontology for neural network model
 
+## To do
+```
+To be added
+```
 
+## Contributing to the project
+
+We welcome contributions. Please contact us by email to get started!
 
 
 

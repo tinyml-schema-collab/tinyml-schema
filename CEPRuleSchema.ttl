@@ -1,8 +1,8 @@
-# baseURI: https://w3id.org/tinyml-schema-collab/cep-rule-schema
+# baseURI: https://w3id.org/tinyml-schema/cep-rule-schema
 
-@prefix : <https://w3id.org/tinyml-schema-collab/cep-rule-schema#> .
+@prefix : <https://w3id.org/tinyml-schema/cep-rule-schema#> .
 @prefix iot: <http://iotschema.org/> .
-@prefix nnet: <https://w3id.org/tinyml-schema-collab/neural-network-schema#> .
+@prefix nnet: <https://w3id.org/tinyml-schema/neural-network-schema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -13,11 +13,11 @@
 @prefix dc: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 
-<https://w3id.org/tinyml-schema-collab/cep-rule-schema>
+<https://w3id.org/tinyml-schema/cep-rule-schema>
   rdf:type owl:Ontology ;
   rdfs:comment "This is a schema for semantically describing cep rules." ;
   dc:issued "2021-12-21" ;
-  vann:preferredNamespaceUri "https://w3id.org/tinyml-schema-collab/cep-rule-schema#" ;
+  vann:preferredNamespaceUri "https://w3id.org/tinyml-schema/cep-rule-schema#" ;
   rdfs:label "The Complex Event Processing Rule Ontology" ;
   vann:preferredNamespacePrefix "cep" ;
   owl:versionInfo 2.0 ;

@@ -9,9 +9,9 @@
       "schema": "https://schema.org/",
 	  "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
       "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-      "demo": "https://w3id.org/tinyml-schema-collab/semanticExample/festo_demo#",
-	  "nnet": "https://w3id.org/tinyml-schema-collab/neural-network-schema#",
-	  "cep": "https://w3id.org/tinyml-schema-collab/cep-rule-schema#" ,
+      "demo": "https://w3id.org/tinyml-schema/semantic-example/festo_demo#",
+	  "nnet": "https://w3id.org/tinyml-schema/neural-network-schema#",
+	  "cep": "https://w3id.org/tinyml-schema/cep-rule-schema#" ,
       "@language": "en"
     }
   ],
@@ -171,6 +171,6 @@
 		]
     }
   },
-  "id": "https://w3id.org/tinyml-schema-collab/semanticExample/Arduino_Sense_BLE_33_198_023_042_025",
+  "id": "https://w3id.org/tinyml-schema/semantic-example/Arduino_Sense_BLE_33_198_023_042_025",
   "forms": []
 }

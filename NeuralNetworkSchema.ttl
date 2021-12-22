@@ -1,7 +1,7 @@
-# baseURI: https://w3id.org/tinyml-schema-collab/neural-network-schema
+# baseURI: https://w3id.org/tinyml-schema/neural-network-schema
 
-@prefix : <https://w3id.org/tinyml-schema-collab/neural-network-schema#> .
-@prefix cep: <https://w3id.org/tinyml-schema-collab/cep-rule-schema#> .
+@prefix : <https://w3id.org/tinyml-schema/neural-network-schema#> .
+@prefix cep: <https://w3id.org/tinyml-schema/cep-rule-schema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -11,11 +11,11 @@
 @prefix dc: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 
-<https://w3id.org/tinyml-schema-collab/neural-network-schema>
+<https://w3id.org/tinyml-schema/neural-network-schema>
   rdf:type owl:Ontology ;
   rdfs:comment "This is a schema for semantically describing artificial neural networks." ;
   dc:issued "2021-12-21" ;
-  vann:preferredNamespaceUri "https://w3id.org/tinyml-schema-collab/neural-network-schema#" ;
+  vann:preferredNamespaceUri "https://w3id.org/tinyml-schema/neural-network-schema#" ;
   rdfs:label "The TinyML Neural Network Ontology" ;
   vann:preferredNamespacePrefix "nnet" ;
   owl:versionInfo 2.0 ;
@@ -103,27 +103,12 @@ vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
   rdfs:comment "Muliply accumulate operations." ;
   rdfs:label "hasMultiplyAccumulateOps" ;
 .
-:hasDescription
-  rdf:type rdf:Property ;
-  rdf:type owl:AnnotationProperty ;
-  rdfs:comment "A human-readable name for a neural network." ;
-  rdfs:domain :NeuralNetwork ;
-  rdfs:label "description" ;
-  rdfs:range rdfs:Literal ;
-.
 :hasID
   rdf:type rdf:Property ;
   schema:domainIncludes :NeuralNetwork ;
   schema:rangeIncludes schema:Text  ;
   rdfs:comment "An unique identifier for a neural network." ;
   rdfs:label "id" ;
-.
-:hasName
-  rdf:type owl:DatatypeProperty ;
-  schema:domainIncludes :NeuralNetwork ;
-  schema:rangeIncludes schema:Text ;
-  rdfs:comment "A human-readable name for a neural network." ;
-  rdfs:label "label" ;
 .
 :hasWeights
   rdf:type rdf:Property ;
