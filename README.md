@@ -4,19 +4,21 @@ The Internet of Things (IoT) is revolutionizing industry. Powered by pervasive e
 
 This is the tinyml-schema project repository. It contains all the schemas, examples, and related software.
 
+The goal of tinyml-schema is not to invent new semantic models for IoT. Instead we integrate and reuse existing schemas, ontologies and vocabularies. The approach is open, organic and community based. However we do encourage domain experts to give their proposals, and thus help us growing tinyml-schema. 
+
 ## Citation
-If our work has been useful for your research and you would like to cite it in an scientific publication, please cite [Towards Semantic Management of On-Device Applications in Industrial IoT]() as follows:
+If our work has been useful for your research and you would like to cite it in an scientific publication, please cite our paper [Towards Semantic Management of On-Device Applications in Industrial IoT](https://github.com/tinyml-schema-collab/tinyml-schema) as follows:
 ```
 To be added
 ```
 
 ## Project Structure
-* [otherSchemas](https://github.com/tinyml-schema-collab/tinyml-schema/tree/main/otherschemas): other dependency schemas, such as SSN, SOSA, schemaorg, etc,.
-* [semanticExample](https://github.com/tinyml-schema-collab/tinyml-schema/tree/main/semanticexample): semantic instances for demonstration purposes including semantic descriptions of IoT devices and on-device artifacts (Neural Network, CEP Rules)
+* [SPARQLQueries](https://github.com/tinyml-schema-collab/tinyml-schema/tree/main/SPARQLQueries): We prove the concept by providing SPARQL queries to answer a set of compentency questions
+* [otherSchemas](https://github.com/tinyml-schema-collab/tinyml-schema/tree/main/otherSchemas): other dependency schemas, such as SSN, SOSA, schemaorg, etc,.
+* [semanticExample](https://github.com/tinyml-schema-collab/tinyml-schema/tree/main/semanticExample): semantic instances for demonstration purposes including semantic descriptions of IoT devices and on-device artifacts (Neural Network, CEP Rules, and IoT devices)
 * CEPRuleSchema: The ontology for CEP rules
 * NeuralNetworkSchema: The ontology for neural network model
 
-The goal of tinyml-schema is not to invent new semantic models for IoT. Instead we integrate and reuse existing schemas, ontologies and vocabularies. The approach is open, organic and community based. However we do encourage domain experts to give their proposals, and thus help us growing tinyml-schema. 
 
 
 
