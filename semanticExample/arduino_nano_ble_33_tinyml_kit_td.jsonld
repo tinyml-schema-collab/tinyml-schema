@@ -1,0 +1,176 @@
+{
+  "@context": [
+    "https://www.w3.org/2019/wot/td/v1",
+    {
+      "ssn": "http://www.w3.org/ns/ssn/",
+      "ssn-system": "http://www.w3.org/ns/ssn/systems",
+      "s3n": "http://w3id.org/s3n/",
+      "om": "http://www.ontology-of-units-of-measure.org/resource/om-2/",
+      "schema": "https://schema.org/",
+	  "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "demo": "https://w3id.org/tinyml-schema-collab/semanticExample/festo_demo#",
+	  "nnet": "https://w3id.org/tinyml-schema-collab/neural-network-schema#",
+	  "cep": "https://w3id.org/tinyml-schema-collab/cep-rule-schema#" ,
+      "@language": "en"
+    }
+  ],
+  "@type": [
+    "s3n:SmartSensor"
+  ],
+  "title": "Arduino_Sense_BLE_33_198_023_042_025",
+  "description": "Arduino_Sense_BLE_33_Tinyml_Kit",
+  "ssn:hasSubSystem": [
+    {
+      "@type": "s3n:MicroController",
+      "rdfs:comment": "MicroController in Arduino Nano Sense BLE 33.",
+      "s3n:hasSystemCapability": [
+        {
+          "ssn-system:hasSystemProperty": {
+            "@type": "s3n:Memory",
+            "schema:value": 129,
+            "schema:unitCode": "om:kilobyte"
+          }
+        }
+      ],
+      "ssn:implements": [
+        {
+          "@type": "s3n:Algorithm",
+		  "@type": "nnet:NeuralNetwork",
+          "rdfs:comment": "Neural network for detecting presence of worker.",
+          "s3n:hasProcedureFeature": {
+            "ssn-system:inCondition": {
+              "@type": "s3n:Memory",
+              "rdfs:comment": "RAM requirement.",
+              "schema:minValue": "80",
+              "schema:unitCode": "om:kilobyte"
+            }
+          }
+        },
+		{
+          "@type": "s3n:Algorithm",
+		  "@type": "cep:Rule",
+          "rdfs:comment": "Complex event processing for generating Alarm Event against rule.",
+          "s3n:hasProcedureFeature": {
+            "ssn-system:inCondition": {
+              "@type": "s3n:Memory",
+              "rdfs:comment": "RAM requirement.",
+              "schema:minValue": "40",
+              "schema:unitCode": "om:kilobyte"
+            }
+          }
+        }
+      ]
+    },
+	{
+      "@type": "demo:ImagerSensor"
+    },
+    {
+      "@type": "demo:VibrationSensor"
+    },
+    {
+      "@type": "demo:TemperatureSensor"
+    }
+  ],
+  "ssn:isHostedBy": "demo:FESTO_Workstation",
+  "securityDefinitions": {
+    "nosec_sc": {
+      "scheme": "nosec"
+    }
+  },
+  "security": "nosec_sc",
+  "properties": {
+    "WorkerPresenceState": {
+      "title": "WorkerPresenceState",
+      "observable": true,
+      "readOnly": true,
+      "description": "Neural network result of on-site worker detection based on an imager sensor.",
+      "type": "boolean",
+	  "@type": "nnet:NetworkOutput",
+      "forms": [
+        {
+          "op": [
+            "readproperty",
+            "observeproperty"
+          ],
+          "href": "http://example.org/Arduino_Sense_BLE_33_198_023_042_025/worker-presence-state"
+        }
+      ]
+    },
+    "Vibration": {
+      "title": "Vibration",
+      "observable": true,
+      "readOnly": true,
+      "description": "Vibration data.",
+      "type": "number",
+      "maximum": 4,
+	  "minimum": -4,
+      "unit": "om:gravity",
+      "forms": [
+        {
+          "op": [
+            "readproperty",
+            "observeproperty"
+          ],
+          "href": "http://example.org/Arduino_Sense_BLE_33_198_023_042_025/vibration"
+        }
+      ]
+    },
+    "Temperature": {
+      "title": "Temperature",
+      "observable": true,
+      "readOnly": true,
+      "description": "Temperature data.",
+      "type": "number",
+      "minimum": -30,
+      "maximum": 60,
+      "unit": "om:degree_Celsius",
+      "forms": [
+        {
+          "op": [
+            "readproperty",
+            "observeproperty"
+          ],
+          "href": "http://example.org/Arduino_Sense_BLE_33_198_023_042_025/temperature"
+        }
+      ]
+    },
+	"Image": {
+      "title": "Image",
+      "observable": true,
+      "readOnly": true,
+      "description": "Image data.",
+      "type": "number",
+      "unit": "om:pixel",
+      "forms": [
+        {
+          "op": [
+            "readproperty",
+            "observeproperty"
+          ],
+          "href": "http://example.org/Arduino_Sense_BLE_33_198_023_042_025/image"
+        }
+      ]
+    }
+  },
+  "actions": {},
+  "events": {
+	"CloggingAlarm": { 
+		"type": "string",
+		"@type": "cep:Operand",
+		"description": "The alarm event generated upon matching of CEP reasoning rule.",
+		"forms": [
+			{  
+				"href": "http://example.org/Arduino_Sense_BLE_33_198_023_042_025/alarm",
+				"contentType": "string",
+				"subprotocol": "longpoll",
+				"op": [ 
+					"subscribeevent" 
+				] 
+			}	
+		]
+    }
+  },
+  "id": "https://w3id.org/tinyml-schema-collab/semanticExample/Arduino_Sense_BLE_33_198_023_042_025",
+  "forms": []
+}

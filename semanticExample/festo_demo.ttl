@@ -1,0 +1,192 @@
+# baseURI: https://w3id.org/tinyml-schema-collab/semanticExample/festo-demo
+
+@prefix : <https://w3id.org/tinyml-schema-collab/semanticExample/festo-demo#> .
+@prefix cep: <https://w3id.org/tinyml-schema-collab/cep-rule-schema#> .
+@prefix nnet: <https://w3id.org/tinyml-schema-collab/neural-network-schema#> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s3n: <http://w3id.org/s3n/> .
+@prefix schema: <https://schema.org/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:FESTO_Workstation
+  rdf:type sosa:Platform ;
+  rdfs:label "FESTO_Workstation" ;
+.
+
+:TemperatureSensor
+  rdf:type owl:Class ;
+  rdfs:label "TemperatureSensor" ;
+  rdfs:subClassOf sosa:Sensor ;
+.
+:VibrationSensor
+  rdf:type owl:Class ;
+  rdfs:label "VibrationSensor" ;
+  rdfs:subClassOf sosa:Sensor ;
+.
+:ImagerSensor
+  rdf:type owl:Class ;
+  rdfs:label "ImagerSensor" ;
+  rdfs:subClassOf sosa:Sensor ;
+.
+
+:cloggingAlarm_Rule_1
+  rdf:type cep:Rule ;
+  cep:body :body_1 ;
+  cep:head :head_1 ;
+  rdfs:comment "Clogging alarm raised if a converyor belt is clogged and no worker is present on site." ;
+  rdfs:label "CloggingAlarm_1" ;
+.
+:body_1
+  rdf:type cep:Body ;
+  cep:eventOperation :eventOperation_1 ;
+  cep:range :range_1 ;
+  cep:whereClause :condition_2 ;
+  cep:whereClause :condition_3 ;
+  rdfs:label "body_1" ;
+.
+:head_1
+  rdf:type cep:Head ;
+  cep:operand :cloggingAlarm ;
+  rdfs:label "head_1" ;
+.
+:range_1
+  rdf:type cep:Range ;
+  schema:unitCode "om:second" ;
+  cep:interval "10" ;
+  rdfs:label "range_1" ;
+.
+:condition_2
+  rdf:type cep:Condition ;
+  cep:hasLeftWhereArgument "X" ;
+  cep:hasRightWhereArgument "2" ;
+  cep:relativeOperator cep:ET ;
+  rdfs:label "condition_2" ;
+.
+:condition_3
+  rdf:type cep:Condition ;
+  cep:hasLeftWhereArgument "Y" ;
+  cep:hasRightWhereArgument "0" ;
+  cep:relativeOperator cep:ET ;
+  rdfs:label "condition_3" ;
+.
+:cloggingAlarm
+  rdf:type cep:Operand ;
+  rdfs:label "cloggingAlarm" ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty schema:value ;
+      owl:someValuesFrom schema:Number ;
+    ] ;
+.
+:eventOperation_1
+  rdf:type cep:EventOperation ;
+  cep:eventOperator cep:AND ;
+  cep:leftOperand :conveyorBeltState_1 ;
+  cep:rightOperand :workerPresenceState_1 ;
+  rdfs:label "eventOperation_1" ;
+.
+:conveyorBeltState_1
+  rdf:type :ConveyorBeltState ;
+  rdf:type nnet:NetworkOutput ;
+  rdfs:label "conveyorBeltState_1" ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty schema:value ;
+      owl:someValuesFrom schema:Number ;
+    ] ;
+.
+:workerPresenceState_1
+  rdf:type :WorkerPresenceState ;
+  rdf:type nnet:NetworkOutput ;
+  rdfs:label "workerPresenceState_1" ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty schema:value ;
+      owl:someValuesFrom schema:Number ;
+    ] ;
+.
+
+:ConveyorBeltState
+  rdf:type rdfs:Class ;
+  rdfs:label "ConveyorBeltState" ;
+  rdfs:subClassOf nnet:NetworkOutput ;
+.
+:WorkerPresenceState
+  rdf:type rdfs:Class ;
+  rdfs:label "WorkerPresenceState" ;
+  rdfs:subClassOf nnet:NetworkOutput ;
+.
+
+:clogNet_1
+  rdf:type nnet:NeuralNetwork ;
+  nnet:hasID "nnet-322-000-000-001" ;
+  nnet:inputLayer :inputLayer_1 ;
+  nnet:middleLayer :middleLayer_1 ;
+  nnet:middleLayer :middleLayer_2 ;
+  nnet:hasMultiplyAccumulateOps "252" ;
+  nnet:outputLayer :outputLayer_1 ;
+  nnet:hasQuantization nnet:Float16 ;
+  nnet:hasWeights "http://example.org/neuralNetworkRepo/nnet-322-000-000-001" ;
+  s3n:hasProcedureFeature :procedureFeature_1 ;
+  rdfs:comment "Neural network for detecting clogging on a conveyor belt." ;
+  rdfs:label "clogNet_1" ;
+  ssn:hasInput :threeAxesVibrationInput_1 ;
+  ssn:hasOutput :conveyorBeltState_1 ;
+.
+:inputLayer_1
+  rdf:type nnet:Layer ;
+  nnet:shapeIn "4" ;
+  nnet:shapeOut "28" ;
+  nnet:isTrainable schema:False ;
+  nnet:hasLayerType nnet:FullyConnected ;
+  rdfs:label "inputLayer_1" ;
+.
+:middleLayer_1
+  rdf:type nnet:Layer ;
+  nnet:hasIndex "1" ;
+  nnet:isTrainable schema:False ;
+  nnet:hasLayerType nnet:Relu ;
+  rdfs:label "middleLayer_1" ;
+.
+:middleLayer_2
+  rdf:type nnet:Layer ;
+  nnet:hasIndex "2" ;
+  nnet:shapeIn "28" ;
+  nnet:shapeOut "3" ;
+  nnet:isTrainable schema:True ;
+  nnet:hasLayerType nnet:FullyConnected ;
+  rdfs:label "middleLayer_2" ;
+.
+:outputLayer_1
+  rdf:type nnet:Layer ;
+  nnet:isTrainable schema:False ;
+  nnet:hasLayerType nnet:Logistic ;
+  rdfs:label "outputLayer_1" ;
+.
+:procedureFeature_1
+  rdf:type s3n:ProcedureFeature ;
+  rdfs:label "ProcedureFeature_1" ;
+  ssn-system:inCondition :condition_1 ;
+.
+:condition_1
+  rdf:type s3n:Memory ;
+  schema:minValue 20 ;
+  schema:unitCode "om:kilobyte" ;
+  rdfs:label "Memory requirement." ;
+.
+:VibrationMeasurement
+  rdf:type owl:Class ;
+  rdfs:label "VibrationMeasurement" ;
+  rdfs:subClassOf nnet:NetworkInput ;
+.
+:threeAxesVibrationInput_1
+  rdf:type :VibrationMeasurement ;
+  rdf:type nnet:NetworkInput ;
+  rdfs:label "threeAxesVibrationInput" ;
+.

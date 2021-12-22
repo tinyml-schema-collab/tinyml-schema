@@ -1,0 +1,68 @@
+@prefix demo: <https://w3id.org/tinyml-schema-collab/semanticExample/festo_demo#> .
+@prefix hctl: <https://www.w3.org/2019/wot/hypermedia#> .
+@prefix jsonschema: <https://www.w3.org/2019/wot/json-schema#> .
+@prefix nnet: <https://w3id.org/tinyml-schema-collab/neural-network-schema#> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s3n: <http://w3id.org/s3n/> .
+@prefix schema: <https://schema.org/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix td: <https://www.w3.org/2019/wot/td#> .
+@prefix wotsec: <https://www.w3.org/2019/wot/security#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/tinyml-schema-collab/semanticExample/SSI_Web_198_023_042_021> a s3n:SmartSensor ;
+    ssn:hasSubSystem [ a s3n:MicroController ;
+            s3n:hasSystemCapability [ ssn-system:hasSystemProperty [ a s3n:Memory ;
+                            schema:unitCode om:kilobyte ;
+                            schema:value 54 ] ] ;
+            rdfs:comment "MicroController in Siemens SSI-Web Node."@en ;
+            ssn:implements [ a nnet:NeuralNetwork ;
+                    s3n:hasProcedureFeature [ ssn-system:inCondition [ a s3n:Memory ;
+                                    rdfs:comment "RAM requirement."@en ;
+                                    schema:minValue "20"@en ;
+                                    schema:unitCode om:kilobyte ] ] ;
+                    rdfs:comment "Neural network for detecting anomaly on a conveyor belt."@en ] ],
+        [ a demo:VibrationSensor ],
+        [ a demo:TemperatureSensor ] ;
+    ssn:isHostedBy "demo:FESTO_Workstation"@en ;
+    td:definesSecurityScheme [ a wotsec:NoSecurityScheme ;
+            td:hasInstanceConfiguration td:nosec_sc ] ;
+    td:description "SIEMENS SSI-Web Node"@en ;
+    td:hasPropertyAffordance [ a jsonschema:NumberSchema ;
+            schema:unitCode om:degree_Celsius ;
+            jsonschema:maximum 60 ;
+            jsonschema:minimum -30 ;
+            jsonschema:readOnly true ;
+            td:description "Temperature data."@en ;
+            td:hasForm [ hctl:hasOperationType td:observeProperty,
+                        td:readProperty ;
+                    hctl:hasTarget <http://example.org/SSI_Web_198_023_042_021/temperature> ] ;
+            td:isObservable true ;
+            td:name "Temperature"@en ;
+            td:title "Temperature"@en ],
+        [ a nnet:NetworkOutput,
+                jsonschema:IntegerSchema ;
+            jsonschema:readOnly true ;
+            td:description "State of the conveyor belt on FESTO workstation based on a vibration sensor."@en ;
+            td:hasForm [ hctl:hasOperationType td:observeProperty,
+                        td:readProperty ;
+                    hctl:hasTarget <http://example.org/SSI_Web_198_023_042_021/conveyor-belt-state> ] ;
+            td:isObservable true ;
+            td:name "ConveyorBeltState"@en ;
+            td:title "ConveyorBeltState"@en ],
+        [ a jsonschema:NumberSchema ;
+            schema:unitCode om:gravity ;
+            jsonschema:maximum 4 ;
+            jsonschema:minimum -4 ;
+            jsonschema:readOnly true ;
+            td:description "Vibration data."@en ;
+            td:hasForm [ hctl:hasOperationType td:observeProperty,
+                        td:readProperty ;
+                    hctl:hasTarget <http://example.org/SSI_Web_198_023_042_021/vibration> ] ;
+            td:isObservable true ;
+            td:name "Vibration"@en ;
+            td:title "Vibration"@en ] ;
+    td:hasSecurityConfiguration td:nosec_sc ;
+    td:title "SSI_Web_198_023_042_021"@en .

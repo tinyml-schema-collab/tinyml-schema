@@ -1,0 +1,291 @@
+# baseURI: https://w3id.org/tinyml-schema-collab/cep-rule-schema
+
+@prefix : <https://w3id.org/tinyml-schema-collab/cep-rule-schema#> .
+@prefix iot: <http://iotschema.org/> .
+@prefix nnet: <https://w3id.org/tinyml-schema-collab/neural-network-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s3n: <http://w3id.org/s3n/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix schema: <https://schema.org/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+
+<https://w3id.org/tinyml-schema-collab/cep-rule-schema>
+  rdf:type owl:Ontology ;
+  rdfs:comment "This is a schema for semantically describing cep rules." ;
+  dc:issued "2021-12-21" ;
+  vann:preferredNamespaceUri "https://w3id.org/tinyml-schema-collab/cep-rule-schema#" ;
+  rdfs:label "The Complex Event Processing Rule Ontology" ;
+  vann:preferredNamespacePrefix "cep" ;
+  owl:versionInfo 2.0 ;
+.
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+dc:issued rdf:type owl:AnnotationProperty .
+dc:title rdf:type owl:AnnotationProperty .
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+#################################################################
+#    Classes
+#################################################################
+
+:Rule
+  rdf:type owl:Class ;
+  rdfs:label "Rule" ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf s3n:Algorithm ;  
+.
+:Head
+  rdf:type owl:Class ;
+  rdfs:label "Head" ;
+  rdfs:subClassOf owl:Thing ;
+  owl:oneOf (
+      iot:Event
+      iot:Property
+    ) ;
+.
+:Body
+  rdf:type owl:Class ;
+  rdfs:label "Rule body" ;
+  rdfs:subClassOf owl:Thing ;
+.
+:Range
+  rdf:type rdfs:Class ;
+  rdfs:label "Range" ;
+.
+:Condition
+  rdf:type owl:Class ;
+  rdfs:label "Condition" ;
+  rdfs:subClassOf owl:Thing ;
+.
+:EventOperation
+  rdf:type owl:Class ;
+  rdfs:label "Event operation" ;
+  rdfs:subClassOf owl:Thing ;
+.
+:RelativeOperator
+  rdf:type owl:Class ;
+  rdfs:label "Condition operator" ;
+  rdfs:subClassOf owl:Thing ;
+  owl:oneOf (
+      :GE
+      :LE
+      :GT
+      :LT
+      :ET
+      :AO
+    ) ;
+.
+:EventOperator
+  rdf:type owl:Class ;
+  rdfs:label "Event operator" ;
+  rdfs:subClassOf owl:Thing ;
+  owl:oneOf (
+      :SEQ
+      :OR
+      :AGGR
+      :AND
+    ) ;
+.
+:Operand
+  rdf:type owl:Class ;
+  rdfs:label "Operand" ;
+  rdfs:subClassOf nnet:NetworkInput ;
+  rdfs:subClassOf nnet:NetworkOutput ;
+  rdfs:subClassOf ssn:Input ;
+  rdfs:subClassOf ssn:Output ;
+  rdfs:subClassOf owl:Thing ;
+  owl:oneOf (
+      iot:Event
+      iot:Property
+    ) ;
+.
+
+#################################################################
+#    Properties
+#################################################################
+
+:head
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Rule ;
+  schema:rangeIncludes :Head ;
+  rdfs:label "head" ;
+.
+:body
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Rule ;
+  schema:rangeIncludes :Body ;
+  rdfs:comment "Rule body." ;
+  rdfs:label "body" ;
+.
+:range
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Body ;
+  schema:rangeIncludes :Range ;
+  rdfs:label "range" ;
+.
+:whereClause
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Body ;
+  schema:rangeIncludes :Condition ;
+  rdfs:label "Where clause in the rule body" ;
+.
+:eventOperation
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Body ;
+  schema:rangeIncludes :EventOperation ;
+  rdfs:comment "Event operation property." ;
+  rdfs:label "eventOperation" ;
+.
+:relativeOperator
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Condition ;
+  schema:rangeIncludes :RelativeOperator ;
+  rdfs:label "relativeOperator" ;
+.
+:leftOperand
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Condition ;
+  schema:rangeIncludes :EventOperation ;
+  rdfs:label "leftOperand" ;
+  rdfs:range :Operand ;
+.
+:middleOperand
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Condition ;
+  schema:domainIncludes :EventOperation ;
+  schema:rangeIncludes :Operand ;
+  rdfs:label "middleOperand" ;
+.
+:rightOperand
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Condition ;
+  schema:domainIncludes :EventOperation ;
+  schema:rangeIncludes :Operand ;
+  rdfs:label "rightOperand" ;
+.
+:eventOperator
+  rdf:type rdf:Property ;
+  schema:domainIncludes :EventOperation ;
+  schema:rangeIncludes :EventOperator ;
+  rdfs:label "eventOperator" ;
+.
+:condition
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Condition ;
+  rdfs:comment "Refers to list of conditions in the where clause of rule body." ;
+  rdfs:label "condition" ;
+.
+:count
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Body ;
+  schema:rangeIncludes schema:Integer ;
+  rdfs:label "count" ;
+.
+:hasLeftWhereArgument
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Condition ;
+  rdfs:label "hasLeftWhereArgument" ;
+.
+:hasRightWhereArgument
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Condition ;
+  rdfs:label "hasRightWhereArgument" ;
+.
+:interval
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Range ;
+  schema:rangeIncludes schema:Number ;
+  rdfs:label "interval" ;
+.
+:numberOfOccurences
+  rdf:type rdf:Property ;
+  schema:domainIncludes :EventOperation ;
+  schema:rangeIncludes :NumberOfOccurences ;
+  schema:rangeIncludes schema:Integer ;
+  rdfs:label "number of occurences" ;
+.
+:operand
+  rdf:type rdf:Property ;
+  schema:domainIncludes :Body ;
+  schema:domainIncludes :Head ;
+  schema:rangeIncludes :Operand ;
+  rdfs:label "operand" ;
+.
+
+#################################################################
+#    Relative Operator
+#################################################################
+:AO
+  rdf:type :RelativeOperator ;
+  rdfs:label "Assignment Operator" ;
+.
+:ET
+  rdf:type :RelativeOperator ;
+  rdfs:label "Equal To" ;
+.
+:GE
+  rdf:type :RelativeOperator ;
+  rdfs:label "Greater than or Equal to" ;
+.
+:GT
+  rdf:type :RelativeOperator ;
+  rdfs:label "Greater Than" ;
+.
+:LE
+  rdf:type :RelativeOperator ;
+  rdfs:label "Less than or Equal to" ;
+.
+:LT
+  rdf:type :RelativeOperator ;
+  rdfs:label "Less Than" ;
+.
+
+#################################################################
+#    Event Operator
+#################################################################
+
+:AGGR
+  rdf:type :EventOperator ;
+  rdfs:comment "Aggregate event operator" ;
+  rdfs:label "Aggregate Operator" ;
+.
+:AND
+  rdf:type :EventOperator ;
+  rdfs:label "AND" ;
+.
+:NOT
+  rdf:type :EventOperator ;
+  rdfs:label "NOT operator" ;
+.
+:OR
+  rdf:type :EventOperator ;
+  rdfs:label "OR" ;
+.
+:SEQ
+  rdf:type :EventOperator ;
+  rdfs:label "SEQ" ;
+.
+
+#################################################################
+#    Others
+#################################################################
+
+time:intervelEquals
+  rdfs:range schema:integer ;
+.
+time:unitType
+  rdfs:range schema:string ;
+.
+:NumberOfOccurences
+  rdf:type owl:Class ;
+  rdfs:label "Number of occurences" ;
+  rdfs:subClassOf owl:Thing ;
+.

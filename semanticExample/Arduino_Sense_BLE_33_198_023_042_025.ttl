@@ -1,0 +1,94 @@
+@prefix cep: <https://w3id.org/tinyml-schema-collab/cep-rule-schema#> .
+@prefix demo: <https://w3id.org/tinyml-schema-collab/semanticExample/festo_demo#> .
+@prefix hctl: <https://www.w3.org/2019/wot/hypermedia#> .
+@prefix jsonschema: <https://www.w3.org/2019/wot/json-schema#> .
+@prefix nnet: <https://w3id.org/tinyml-schema-collab/neural-network-schema#> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s3n: <http://w3id.org/s3n/> .
+@prefix schema: <https://schema.org/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix td: <https://www.w3.org/2019/wot/td#> .
+@prefix wotsec: <https://www.w3.org/2019/wot/security#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/tinyml-schema-collab/semanticExample/Arduino_Sense_BLE_33_198_023_042_025> a s3n:SmartSensor ;
+    ssn:hasSubSystem [ a demo:TemperatureSensor ],
+        [ a demo:VibrationSensor ],
+        [ a demo:ImagerSensor ],
+        [ a s3n:MicroController ;
+            s3n:hasSystemCapability [ ssn-system:hasSystemProperty [ a s3n:Memory ;
+                            schema:unitCode om:kilobyte ;
+                            schema:value 129 ] ] ;
+            rdfs:comment "MicroController in Arduino Nano Sense BLE 33."@en ;
+            ssn:implements [ a nnet:NeuralNetwork ;
+                    s3n:hasProcedureFeature [ ssn-system:inCondition [ a s3n:Memory ;
+                                    rdfs:comment "RAM requirement."@en ;
+                                    schema:minValue "80"@en ;
+                                    schema:unitCode om:kilobyte ] ] ;
+                    rdfs:comment "Neural network for detecting presence of worker."@en ],
+                [ a cep:Rule ;
+                    s3n:hasProcedureFeature [ ssn-system:inCondition [ a s3n:Memory ;
+                                    rdfs:comment "RAM requirement."@en ;
+                                    schema:minValue "40"@en ;
+                                    schema:unitCode om:kilobyte ] ] ;
+                    rdfs:comment "Complex event processing for generating Alarm Event against rule."@en ] ] ;
+    ssn:isHostedBy "demo:FESTO_Workstation"@en ;
+    td:definesSecurityScheme [ a wotsec:NoSecurityScheme ;
+            td:hasInstanceConfiguration td:nosec_sc ] ;
+    td:description "Arduino_Sense_BLE_33_Tinyml_Kit"@en ;
+    td:hasEventAffordance [ a cep:Operand ;
+            td:description "The alarm event generated upon matching of CEP reasoning rule."@en ;
+            td:hasForm [ hctl:forContentType "string"@en ;
+                    hctl:forSubProtocol "longpoll"@en ;
+                    hctl:hasOperationType td:subscribeEvent ;
+                    hctl:hasTarget <http://example.org/Arduino_Sense_BLE_33_198_023_042_025/alarm> ] ;
+            td:name "CloggingAlarm"@en ;
+            td:type "string"@en ] ;
+    td:hasPropertyAffordance [ a jsonschema:NumberSchema ;
+            schema:unitCode om:degree_Celsius ;
+            jsonschema:maximum 60 ;
+            jsonschema:minimum -30 ;
+            jsonschema:readOnly true ;
+            td:description "Temperature data."@en ;
+            td:hasForm [ hctl:hasOperationType td:observeProperty,
+                        td:readProperty ;
+                    hctl:hasTarget <http://example.org/Arduino_Sense_BLE_33_198_023_042_025/temperature> ] ;
+            td:isObservable true ;
+            td:name "Temperature"@en ;
+            td:title "Temperature"@en ],
+        [ a jsonschema:NumberSchema ;
+            schema:unitCode om:pixel ;
+            jsonschema:readOnly true ;
+            td:description "Image data."@en ;
+            td:hasForm [ hctl:hasOperationType td:observeProperty,
+                        td:readProperty ;
+                    hctl:hasTarget <http://example.org/Arduino_Sense_BLE_33_198_023_042_025/image> ] ;
+            td:isObservable true ;
+            td:name "Image"@en ;
+            td:title "Image"@en ],
+        [ a nnet:NetworkOutput,
+                jsonschema:BooleanSchema ;
+            jsonschema:readOnly true ;
+            td:description "Neural network result of on-site worker detection based on an imager sensor."@en ;
+            td:hasForm [ hctl:hasOperationType td:observeProperty,
+                        td:readProperty ;
+                    hctl:hasTarget <http://example.org/Arduino_Sense_BLE_33_198_023_042_025/worker-presence-state> ] ;
+            td:isObservable true ;
+            td:name "WorkerPresenceState"@en ;
+            td:title "WorkerPresenceState"@en ],
+        [ a jsonschema:NumberSchema ;
+            schema:unitCode om:gravity ;
+            jsonschema:maximum 4 ;
+            jsonschema:minimum -4 ;
+            jsonschema:readOnly true ;
+            td:description "Vibration data."@en ;
+            td:hasForm [ hctl:hasOperationType td:observeProperty,
+                        td:readProperty ;
+                    hctl:hasTarget <http://example.org/Arduino_Sense_BLE_33_198_023_042_025/vibration> ] ;
+            td:isObservable true ;
+            td:name "Vibration"@en ;
+            td:title "Vibration"@en ] ;
+    td:hasSecurityConfiguration td:nosec_sc ;
+    td:title "Arduino_Sense_BLE_33_198_023_042_025"@en .

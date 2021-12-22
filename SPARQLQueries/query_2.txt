@@ -1,0 +1,29 @@
+PREFIX cep: <https://w3id.org/tinyml-schema-collab/cep-rule-schema#> 
+PREFIX demo: <https://w3id.org/tinyml-schema-collab/semanticExample/festo_demo#> 
+PREFIX nnet: <https://w3id.org/tinyml-schema-collab/neural-network-schema#> 
+PREFIX om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX s3n: <http://w3id.org/s3n/> 
+PREFIX schema: <https://schema.org/> 
+PREFIX ssn: <http://www.w3.org/ns/ssn/> 
+PREFIX ssn-system: <http://www.w3.org/ns/ssn/systems/> 
+PREFIX td: <https://www.w3.org/2019/wot/td#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <https://w3id.org/tinyml-schema-collab/semanticExample/festo-demo#>
+
+SELECT ?multiSensor ?memory
+    WHERE {
+            ?multiSensor a s3n:SmartSensor ;
+                         ssn:hasSubSystem ?system_1 ;
+                         ssn:hasSubSystem ?system_2 ;      	
+                         ssn:hasSubSystem ?system_3 .      	
+            ?system_1    rdf:type demo:VibrationSensor .
+            ?system_2    rdf:type demo:TemperatureSensor .
+            ?system_3    rdf:type s3n:MicroController ;
+                         s3n:hasSystemCapability ?x .
+            ?x      ssn-system:hasSystemProperty ?cond .
+            ?cond   a s3n:Memory ;
+                    schema:value ?memory ;
+                    schema:unitCode om:kilobyte .
+            FILTER (?memory >= 20)
+    }

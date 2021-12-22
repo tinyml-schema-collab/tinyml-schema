@@ -1,0 +1,136 @@
+# baseURI: https://w3id.org/tinyml-schema-collab/semanticExample/Arduino_Sense_BLE_33_198_023_042_025
+
+@prefix demo: <https://w3id.org/tinyml-schema-collab/semanticExample/festo_demo#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s3n: <http://w3id.org/s3n/> .
+@prefix schema: <https://schema.org/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix td: <https://www.w3.org/2019/wot/td#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix nnet: <https://w3id.org/tinyml-schema-collab/neural-network-schema#> .
+@prefix cep: <https://w3id.org/tinyml-schema-collab/cep-rule-schema#> .
+
+<https://w3id.org/tinyml-schema-collab/semanticExample/Arduino_Sense_BLE_33_198_023_042_025>
+  rdf:type s3n:SmartSensor ;
+  ssn:hasSubSystem [
+      rdf:type demo:TemperatureSensor ;
+    ] ;
+  ssn:hasSubSystem [
+      rdf:type demo:VibrationSensor ;
+    ] ;
+  ssn:hasSubSystem [
+      rdf:type demo:ImagerSensor ;
+	] ;
+  ssn:hasSubSystem [
+      rdf:type s3n:MicroController ;
+      s3n:hasSystemCapability [
+          ssn-system:hasSystemProperty [
+              rdf:type s3n:Memory ;
+              schema:unitCode om:kilobyte ;
+              schema:value 129 ;
+            ] ;
+        ] ;
+      rdfs:comment "MicroController in Arduino Nano Sense BLE 33."@en ;
+	  ssn:implements [
+          rdf:type s3n:Algorithm ;
+		  rdf:type nnet:NeuralNetwork ;
+          s3n:hasProcedureFeature [
+              ssn-system:inCondition [
+                  rdf:type s3n:Memory ;
+                  schema:minValue "80"@en ;
+                  schema:unitCode "om:kilobyte"@en ;
+                  rdfs:comment "RAM requirement."@en ;
+                ] ;
+            ] ;
+          rdfs:comment "Neural network for detecting presence of worker."@en ;
+        ] ;
+	  ssn:implements [
+          rdf:type s3n:Algorithm ;
+		  rdf:type cep:Rule ;
+          s3n:hasProcedureFeature [
+              ssn-system:inCondition [
+                  rdf:type s3n:Memory ;
+                  schema:minValue "40"@en ;
+                  schema:unitCode "om:kilobyte"@en ;
+                  rdfs:comment "RAM requirement."@en ;
+                ] ;
+            ] ;
+          rdfs:comment "Complex event processing for generating Alarm Event against rule."@en ;
+        ] ;
+    ] ;
+  ssn:isHostedBy "demo:FESTO_Workstation"@en ;
+  td:description "Arduino_Sense_BLE_33_Tinyml_Kit."@en ;
+  td:hasPropertyAffordance [
+      td:description "Neural network result of on-site worker detection based on an imager sensor."@en ;
+      td:hasForm [
+          td:href "http://example.org/Arduino_Sense_BLE_33_198_023_042_025/worker-presence-state"@en ;
+          td:op "observeproperty"@en ;
+          td:op "readproperty"@en ;
+        ] ;
+	  rdf:type nnet:NetworkOutput ;
+      td:isObservable "true"^^xsd:boolean ;
+      td:readOnly "true"^^xsd:boolean ;
+      td:title "WorkerPresenceState"@en ;
+      td:type "boolean"@en ;
+    ] ;
+  td:hasPropertyAffordance [
+      td:description "Temperature data."@en ;
+      td:hasForm [
+          td:href "http://example.org/Arduino_Sense_BLE_33_198_023_042_025/temperature"@en ;
+          td:op "observeproperty"@en ;
+          td:op "readproperty"@en ;
+        ] ;
+      td:isObservable "true"^^xsd:boolean ;
+      td:maximum 120 ;
+      td:minimum -40 ;
+      td:readOnly "true"^^xsd:boolean ;
+      td:title "Temperature"@en ;
+      td:type "number"@en ;
+      td:unit "om:degree_Celsius"@en ;
+    ] ;
+  td:hasPropertyAffordance [
+      td:description "Vibration data."@en ;
+      td:hasForm [
+          td:href "http://example.org/Arduino_Sense_BLE_33_198_023_042_025/vibration"@en ;
+          td:op "observeproperty"@en ;
+          td:op "readproperty"@en ;
+        ] ;
+      td:isObservable "true"^^xsd:boolean ;
+      td:maximum 4 ;
+      td:minimum -4 ;
+      td:readOnly "true"^^xsd:boolean ;
+      td:title "Vibration"@en ;
+      td:type "number"@en ;
+      td:unit "om:gravity"@en ;
+    ] ;
+  td:hasPropertyAffordance [
+	  td:description "Image data."@en ;
+	  td:hasForm [
+		  td:href "http://example.org/Arduino_Sense_BLE_33_198_023_042_025/image"@en ;
+		  td:op "observeproperty"@en ;
+		  td:op "readproperty"@en ;
+		] ;
+	  td:isObservable "true"^^xsd:boolean ;
+	  td:readOnly "true"^^xsd:boolean ;
+	  td:title "Image"@en ;
+	  td:type "array"@en ;
+	  td:unit "om:pixel"@en ;
+	] ;
+  td:hasEventAffordance [
+	  td:description "The alarm event generated upon matching of CEP reasoning rule."@en ;
+	  td:hasForm [
+		  td:href "http://example.org/Arduino_Sense_BLE_33_198_023_042_025/alarm"@en ;
+		  td:op "subscribeevent"@en ;
+		  td:type "string"@en ;
+		] ;
+	  rdf:type cep:Operand ;
+	] ;
+  td:hasSecurityConfiguration td:nosec_sc ;
+  td:securityDefinitions [
+      td:scheme "nosec"@en ;
+    ] ;
+  td:title "Arduino_Sense_BLE_33_198_023_042_025"@en ;
+.
