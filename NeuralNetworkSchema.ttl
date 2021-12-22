@@ -67,14 +67,12 @@ vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
   rdf:type owl:Class ;
   rdfs:label "NetworkInput" ;
   rdfs:comment "A description of the input to the NN." ;
-  rdfs:subClassOf cep:Operand ;
   rdfs:subClassOf ssn:Input ;
 .
 :NetworkOutput
   rdf:type owl:Class ;
   rdfs:label "NetworkOutput" ;
   rdfs:comment "A description of the output from the NN." ;
-  rdfs:subClassOf cep:Operand ;
   rdfs:subClassOf ssn:Output ;
 .
 :Quantization
@@ -89,6 +87,12 @@ vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
 #    Properties
 #################################################################
 
+schema:runtimePlatform 
+	rdf:type rdf:Property ;
+    rdfs:label "runtimePlatform" ;
+    schema:domainIncludes nnet:NeuralNetwork ;
+    schema:rangeIncludes schema:Text .
+	
 :hasQuantization
   rdf:type rdf:Property ;
   schema:domainIncludes :NeuralNetwork ;

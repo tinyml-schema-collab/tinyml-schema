@@ -14,10 +14,18 @@
 @prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+#################################################################
+#    Demo Host Platform
+#################################################################
+
 :FESTO_Workstation
   rdf:type sosa:Platform ;
   rdfs:label "FESTO_Workstation" ;
 .
+
+#################################################################
+#    SOSA Sensor Extension
+#################################################################
 
 :TemperatureSensor
   rdf:type owl:Class ;
@@ -34,6 +42,17 @@
   rdfs:label "ImagerSensor" ;
   rdfs:subClassOf sosa:Sensor ;
 .
+:measurementProvidedBy
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Relation between a Sensor and an artifact input."@en ;
+  rdfs:label "sensor provides input"@en ;
+  schema:rangeIncludes sosa:Sensor ;
+  schema:domainIncludes ssn:Input ;
+.
+
+#################################################################
+#    Clogging Alarm Rule Instance
+#################################################################
 
 :cloggingAlarm_Rule_1
   rdf:type cep:Rule ;
@@ -93,7 +112,6 @@
 .
 :conveyorBeltState_1
   rdf:type :ConveyorBeltState ;
-  rdf:type nnet:NetworkOutput ;
   rdfs:label "conveyorBeltState_1" ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -103,7 +121,6 @@
 .
 :workerPresenceState_1
   rdf:type :WorkerPresenceState ;
-  rdf:type nnet:NetworkOutput ;
   rdfs:label "workerPresenceState_1" ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -112,20 +129,14 @@
     ] ;
 .
 
-:ConveyorBeltState
-  rdf:type rdfs:Class ;
-  rdfs:label "ConveyorBeltState" ;
-  rdfs:subClassOf nnet:NetworkOutput ;
-.
-:WorkerPresenceState
-  rdf:type rdfs:Class ;
-  rdfs:label "WorkerPresenceState" ;
-  rdfs:subClassOf nnet:NetworkOutput ;
-.
+#################################################################
+#    Neural Network clogNet Instance
+#################################################################
 
 :clogNet_1
   rdf:type nnet:NeuralNetwork ;
-  nnet:hasID "nnet-322-000-000-001" ;
+  schema:identifier "nnet-322-000-000-001" ;
+  schema:runtimePlatform "TensorFlow Lite for Microcontrollers"
   nnet:inputLayer :inputLayer_1 ;
   nnet:middleLayer :middleLayer_1 ;
   nnet:middleLayer :middleLayer_2 ;
@@ -180,13 +191,29 @@
   schema:unitCode "om:kilobyte" ;
   rdfs:label "Memory requirement." ;
 .
+
+#################################################################
+#    Other Classes
+#################################################################
+
+:ConveyorBeltState
+  rdf:type rdfs:Class ;
+  rdfs:label "ConveyorBeltState" ;
+  rdfs:subClassOf nnet:NetworkOutput ;
+.
+:WorkerPresenceState
+  rdf:type rdfs:Class ;
+  rdfs:label "WorkerPresenceState" ;
+  rdfs:subClassOf nnet:NetworkOutput ;
+.
+
 :VibrationMeasurement
   rdf:type owl:Class ;
   rdfs:label "VibrationMeasurement" ;
-  rdfs:subClassOf nnet:NetworkInput ;
+  rdfs:subClassOf ssn:Input ;
+  :measurementProvidedBy: :VibrationSensor ;
 .
 :threeAxesVibrationInput_1
   rdf:type :VibrationMeasurement ;
-  rdf:type nnet:NetworkInput ;
   rdfs:label "threeAxesVibrationInput" ;
 .

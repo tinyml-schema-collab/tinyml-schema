@@ -75,12 +75,12 @@ vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
   rdfs:label "Condition operator" ;
   rdfs:subClassOf owl:Thing ;
   owl:oneOf (
-      :GE
-      :LE
-      :GT
-      :LT
-      :ET
-      :AO
+      :GE # Greater Equal
+      :LE # Lower Equal
+      :GT # Greater To
+      :LT # Lower To
+      :ET # Equal To
+      :AO # Assignment Op
     ) ;
 .
 :EventOperator
@@ -97,8 +97,6 @@ vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
 :Operand
   rdf:type owl:Class ;
   rdfs:label "Operand" ;
-  rdfs:subClassOf nnet:NetworkInput ;
-  rdfs:subClassOf nnet:NetworkOutput ;
   rdfs:subClassOf ssn:Input ;
   rdfs:subClassOf ssn:Output ;
   rdfs:subClassOf owl:Thing ;
