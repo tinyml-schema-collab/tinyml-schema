@@ -10,14 +10,10 @@ PREFIX ssn-system: <http://www.w3.org/ns/ssn/systems/>
 PREFIX td: <https://www.w3.org/2019/wot/td#> 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT ?rule ?input ?output 
-    WHERE {
-            ?rule a cep:Rule ;
-                cep:head ?head ;
-                cep:body ?body .
-            ?head cep:operand ?output .
-            ?body cep:eventOperation ?op .
-            OPTIONAL { ?op cep:leftOperand ?input }
-            OPTIONAL { ?op cep:rightOperand ?input }
-            ?input a demo:ConveyorBeltState .
-    }
+SELECT ?artifact ?name ?description
+WHERE {
+  ?artifact a s3n:Algorithm ;
+      schema:name ?name ;
+      schema:description ?description .
+}
+

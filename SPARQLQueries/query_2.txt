@@ -9,7 +9,6 @@ PREFIX ssn: <http://www.w3.org/ns/ssn/>
 PREFIX ssn-system: <http://www.w3.org/ns/ssn/systems/> 
 PREFIX td: <https://www.w3.org/2019/wot/td#> 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX : <https://w3id.org/tinyml-schema-collab/semanticExample/festo-demo#>
 
 SELECT ?multiSensor ?memory
     WHERE {

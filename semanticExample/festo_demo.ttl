@@ -136,7 +136,7 @@
 :clogNet_1
   rdf:type nnet:NeuralNetwork ;
   schema:identifier "nnet-322-000-000-001" ;
-  schema:runtimePlatform "TensorFlow Lite for Microcontrollers"
+  schema:runtimePlatform "TensorFlow Lite for Microcontrollers" ;
   nnet:inputLayer :inputLayer_1 ;
   nnet:middleLayer :middleLayer_1 ;
   nnet:middleLayer :middleLayer_2 ;
