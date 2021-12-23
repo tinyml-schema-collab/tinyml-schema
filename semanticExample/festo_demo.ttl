@@ -145,8 +145,8 @@
   nnet:hasQuantization nnet:Float16 ;
   nnet:hasWeights "http://example.org/neuralNetworkRepo/nnet-322-000-000-001" ;
   s3n:hasProcedureFeature :procedureFeature_1 ;
-  rdfs:comment "Neural network for detecting clogging on a conveyor belt." ;
-  rdfs:label "clogNet_1" ;
+  schema:description "Neural network for detecting clogging on a conveyor belt." ;
+  schema:name "clogNet_1" ;
   ssn:hasInput :threeAxesVibrationInput_1 ;
   ssn:hasOutput :conveyorBeltState_1 ;
 .

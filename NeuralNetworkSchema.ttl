@@ -93,6 +93,24 @@ schema:runtimePlatform
     schema:domainIncludes nnet:NeuralNetwork ;
     schema:rangeIncludes schema:Text .
 	
+schema:description 
+	rdf:type rdf:Property ;
+    rdfs:label "description of the model" ;
+    schema:domainIncludes nnet:NeuralNetwork ;
+    schema:rangeIncludes schema:Text .
+
+schema:identifier
+	rdf:type rdf:Property ;
+    rdfs:label "ID" ;
+    schema:domainIncludes nnet:NeuralNetwork ;
+    schema:rangeIncludes schema:Text .
+	
+schema:name
+	rdf:type rdf:Property ;
+    rdfs:label "name" ;
+    schema:domainIncludes nnet:NeuralNetwork ;
+    schema:rangeIncludes schema:Text .
+	
 :hasQuantization
   rdf:type rdf:Property ;
   schema:domainIncludes :NeuralNetwork ;
