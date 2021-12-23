@@ -110,6 +110,16 @@ vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
 #    Properties
 #################################################################
 
+schema:description 
+	rdf:type rdf:Property ;
+    rdfs:label "description of the rule" ;
+    schema:domainIncludes :Rule ;
+    schema:rangeIncludes schema:Text .
+schema:name
+	rdf:type rdf:Property ;
+    rdfs:label "name" ;
+    schema:domainIncludes :Rule ;
+    schema:rangeIncludes schema:Text .
 :head
   rdf:type rdf:Property ;
   schema:domainIncludes :Rule ;

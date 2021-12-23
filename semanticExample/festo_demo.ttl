@@ -58,8 +58,8 @@
   rdf:type cep:Rule ;
   cep:body :body_1 ;
   cep:head :head_1 ;
-  rdfs:comment "Clogging alarm raised if a converyor belt is clogged and no worker is present on site." ;
-  rdfs:label "CloggingAlarm_1" ;
+  schema:description "Clogging alarm raised if a converyor belt is clogged and no worker is present on site." ;
+  schema:name "CloggingAlarm_1" ;
 .
 :body_1
   rdf:type cep:Body ;
