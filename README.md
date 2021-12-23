@@ -14,7 +14,6 @@ To be added
 
 ## Project Structure
 * [SPARQLQueries](https://github.com/tinyml-schema-collab/tinyml-schema/tree/main/SPARQLQueries): We prove the concept by providing SPARQL queries to answer a set of compentency questions
-* [otherSchemas](https://github.com/tinyml-schema-collab/tinyml-schema/tree/main/otherSchemas): other dependency schemas, such as SSN, SOSA, schemaorg, etc,.
 * [semanticExample](https://github.com/tinyml-schema-collab/tinyml-schema/tree/main/semanticExample): semantic instances for demonstration purposes including semantic descriptions of IoT devices and on-device artifacts (Neural Network, CEP Rules, and IoT devices)
 * CEPRuleSchema: The ontology for CEP rules
 * NeuralNetworkSchema: The ontology for neural network model
